@@ -18,7 +18,6 @@ const initialValues = {
 };
 const Capture = (props) => {
   const [currentWine, setCurrentWine] = useState({});
-  //const [dataIsReturned, setDataReturned] = useState(false);
 
   const params = useParams();
   const handleChange = (e) => {
@@ -30,7 +29,6 @@ const Capture = (props) => {
   };
 
   const addWine = (values) => {
-    //console.log(values);
     return fetch(process.env.REACT_APP_ENPOINT_URL + "/wines/add", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -58,14 +56,9 @@ const Capture = (props) => {
         .then((response) => response.json())
         .then((data) => {
           setCurrentWine(data.obj[0]);
-          //setDataReturned(true);
-          // values = JSON.parse(JSON.stringify(data.wine));
-          // setDataReturned(true);
-          //console.log(data.wine[0]);
         });
     } else {
       setCurrentWine(initialValues);
-      //setDataReturned(true);
     }
   };
 
@@ -98,6 +91,48 @@ const Capture = (props) => {
       document.getElementById("qty").addEventListener("click", () => {
         return false;
       });
+    }
+  };
+
+  const fileHandler = (e) => {
+    setImgFile(e.target.files[0]);
+  };
+
+  const fileUploadHandler = () => {
+    const fd = new FormData();
+    fd.append("image", imgFile, imgFile.name);
+    axios.post(process.env.REACT_APP_ENPOINT_URL + "/file", fd).then((res) => {
+      console.log(res);
+    });
+  };
+
+  const imageFile = () => {
+    if (currentWine.img !== undefined) {
+      return (
+        <Input
+          id="img"
+          type="text"
+          message="Image"
+          label="Image"
+          name="img"
+          handleChange={handleChange}
+          defaultValue={currentWine.img}
+        ></Input>
+      );
+    } else {
+      return (
+        <>
+          <Input
+            id="img"
+            type="file"
+            label="Image"
+            name="img"
+            handleChange={fileHandler}
+          ></Input>
+
+          <button onClick={fileUploadHandler}>Enregistrer</button>
+        </>
+      );
     }
   };
 
@@ -192,17 +227,7 @@ const Capture = (props) => {
           cssstyle="comment-area"
         ></Input>
       </div>
-      <div className={"list-item-container"}>
-        <Input
-          id="img"
-          type="text"
-          message="Image"
-          label="Image"
-          name="img"
-          handleChange={handleChange}
-          defaultValue={currentWine.img}
-        ></Input>
-      </div>
+      <div className={"list-item-container"}>{imageFile()}</div>
       <div className={"button-container"}>
         <Button
           id="deleteButton"
