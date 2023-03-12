@@ -3,6 +3,7 @@ import Input from "../Form/Input";
 import Select from "../Form/Select";
 import { useParams } from "react-router-dom";
 import Button from "react-bootstrap/Button";
+import axios from "axios";
 const initialValues = {
   name: "",
   qty: "0",
@@ -18,7 +19,7 @@ const initialValues = {
 };
 const Capture = (props) => {
   const [currentWine, setCurrentWine] = useState({});
-
+  const [imgFile, setImgFile] = useState({});
   const params = useParams();
   const handleChange = (e) => {
     const { name, value } = e.target;
