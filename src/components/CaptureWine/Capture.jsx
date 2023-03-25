@@ -103,11 +103,40 @@ const Capture = (props) => {
     const fd = new FormData();
     fd.append("image", imgFile, imgFile.name);
     axios.post(process.env.REACT_APP_ENPOINT_URL + "/file", fd).then((res) => {
-      console.log(res);
+      currentWine.img = imgFile.name;
+      updateWine(currentWine);
     });
   };
 
   const imageFile = () => {
+    if (currentWine.img !== undefined) {
+      return (
+        <div className={"img-container"}>
+          <img
+            src="https://wineimg.s3.amazonaws.com/16796914552401517640542542864333.jpg"
+            className={"label"}
+            alt="label"
+          ></img>
+        </div>
+      );
+    } else {
+      return (
+        <>
+          <Input
+            id="img"
+            type="file"
+            label="Image"
+            name="img"
+            handleChange={fileHandler}
+          ></Input>
+
+          <button onClick={fileUploadHandler}>Enregistrer</button>
+        </>
+      );
+    }
+  };
+
+  const imageFileChange = () => {
     if (currentWine.img !== undefined) {
       return (
         <Input
@@ -136,7 +165,6 @@ const Capture = (props) => {
       );
     }
   };
-
   //Called once after the render (component is mounted) - the array is the dependency array basically the parameters which trigger the function is they are changed
   useEffect(() => {
     fetchData();
@@ -158,29 +186,11 @@ const Capture = (props) => {
       </div>
       <div className={"list-item-container"}>
         <Select
-          label="Type"
-          name="group"
-          handleChange={handleChange}
-          list="type"
-          defaultValue={currentWine.group}
-        />
-      </div>
-      <div className={"list-item-container"}>
-        <Select
           label="Raisin"
           name="grape"
           handleChange={handleChange}
           list="grapes"
           defaultValue={currentWine.grape}
-        />
-      </div>
-      <div className={"list-item-container"}>
-        <Select
-          label="Millésime"
-          name="millesime"
-          handleChange={handleChange}
-          list="millesime"
-          defaultValue={currentWine.millesime}
         />
       </div>
       <div className={"list-item-container"}>
@@ -192,29 +202,51 @@ const Capture = (props) => {
           defaultValue={currentWine.country}
         />
       </div>
+      <div className={"lists-top-container"}>
+        <div className={"lists-column-container"}>{imageFile()}</div>
+        <div className={"lists-column-container"}>
+          <div className={"list-item-container"}>
+            <Select
+              label="Type"
+              name="group"
+              handleChange={handleChange}
+              list="type"
+              defaultValue={currentWine.group}
+            />
+          </div>
 
-      <div className={"medium-input-container"}>
-        <Input
-          id="qty"
-          label="Qtée"
-          type="number"
-          name="qty"
-          disabled="true"
-          handleChange={handleChange}
-          defaultValue={currentWine.qty}
-          css="medium-input"
-        ></Input>
-      </div>
-      <div className={"medium-input-container"}>
-        <Input
-          id="price"
-          label="Coût"
-          type="number"
-          name="price"
-          handleChange={handleChange}
-          defaultValue={currentWine.price}
-          css="medium-input"
-        ></Input>
+          <div className={"list-item-container"}>
+            <Select
+              label="Millésime"
+              name="millesime"
+              handleChange={handleChange}
+              list="millesime"
+              defaultValue={currentWine.millesime}
+            />
+          </div>
+
+          <div className={"list-item-container"}>
+            <Input
+              id="qty"
+              label="Qtée"
+              type="number"
+              name="qty"
+              disabled="true"
+              handleChange={handleChange}
+              defaultValue={currentWine.qty}
+            ></Input>
+          </div>
+          <div className={"list-item-container"}>
+            <Input
+              id="price"
+              label="Coût"
+              type="number"
+              name="price"
+              handleChange={handleChange}
+              defaultValue={currentWine.price}
+            ></Input>
+          </div>
+        </div>
       </div>
       <div className={"list-item-container"}>
         <Input
@@ -228,7 +260,7 @@ const Capture = (props) => {
           cssstyle="comment-area"
         ></Input>
       </div>
-      <div className={"list-item-container"}>{imageFile()}</div>
+      <div className={"list-item-container"}>{imageFileChange()}</div>
       <div className={"button-container"}>
         <Button
           id="deleteButton"
