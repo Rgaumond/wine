@@ -1,6 +1,7 @@
 import "./App.css";
 import Capture from "./components/CaptureWine/Capture";
 import WineList from "./components/Lists/WineList";
+import Qr from "./components/QR/Qr";
 // import UpdateWine from "./components/Update/UpdateWine";
 import Cellar from "./components/Cellars/Cellar";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
@@ -17,6 +18,7 @@ function App() {
           <Route path="/cellar" element={<Cellar />}></Route>
           <Route path="/cellar/:wineid" element={<Cellar />}></Route>
           <Route path="/capture/:wineid" element={<Capture />}></Route>
+          <Route path="/qr" element={<Qr />}></Route>
           <Route
             path="/"
             element={<WineList updateView={updateView} />}

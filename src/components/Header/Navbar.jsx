@@ -33,6 +33,7 @@ const Navbar = () => {
           <div className={burger_class}></div>
           <div className={burger_class}></div>
           <div className={burger_class}></div>
+          <div className={burger_class}></div>
         </div>
       </nav>
       <div className={menu_class}>
@@ -53,6 +54,12 @@ const Navbar = () => {
           onClick={() => (window.location.href = "../capture")}
         >
           Ajouter
+        </div>
+        <div
+          className="menu-item"
+          onClick={() => (window.location.href = "../qr")}
+        >
+          Code QR
         </div>
       </div>
     </div>

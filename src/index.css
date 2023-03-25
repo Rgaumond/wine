@@ -94,3 +94,12 @@ code {
   width: 60%;
   right: 0;
 }
+
+.qr {
+  text-align: center;
+}
+
+.qr-img {
+  width: 90%;
+  margin-top: 25%;
+}
