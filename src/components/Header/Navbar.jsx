@@ -19,13 +19,15 @@ const Navbar = () => {
     setIsMenuClicked(!isMenuClicked);
   };
 
-  const forward = (target) => {
-    //if (target === "cellar") window.location.href = "/cellar";
+  const home = () => {
+    window.location.href = "../";
   };
 
   return (
     <div>
-      <div className="burger-logo">VinoVeritas</div>
+      <div className="burger-logo" onClick={home}>
+        VinoVeritas
+      </div>
       <nav>
         <div className="burger-menu" onClick={updateMenu}>
           <div className={burger_class}></div>

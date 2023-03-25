@@ -16,6 +16,23 @@ code {
   padding-left: 10px;
 }
 
+.img-style {
+  visibility: hidden;
+  position: absolute;
+}
+
+.img-btn {
+  border: 1px solid;
+  padding: 5px 10px;
+  border-radius: 5px;
+  background: green;
+  color: #fff;
+  text-align: center;
+}
+.img-empty {
+  margin: auto;
+}
+
 .list-item-container {
   padding: 10px;
   margin: 3px;

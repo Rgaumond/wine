@@ -19,7 +19,6 @@ const initialValues = {
 };
 const Capture = (props) => {
   const [currentWine, setCurrentWine] = useState({});
-  const [imgFile, setImgFile] = useState({});
   const params = useParams();
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -39,13 +38,14 @@ const Capture = (props) => {
     });
   };
 
-  const updateWine = (values) => {
+  const updateWine = (values, refreshPage) => {
     return fetch(process.env.REACT_APP_ENPOINT_URL + "/wines/update", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(values),
     }).then(() => {
-      window.location.href = "../";
+      if (refreshPage) window.location.reload();
+      else window.location.href = "../";
     });
   };
 
@@ -96,15 +96,15 @@ const Capture = (props) => {
   };
 
   const fileHandler = (e) => {
-    setImgFile(e.target.files[0]);
+    return fileUploadHandler(e.target.files[0]);
   };
 
-  const fileUploadHandler = () => {
+  const fileUploadHandler = (imgFile) => {
     const fd = new FormData();
     fd.append("image", imgFile, imgFile.name);
     axios.post(process.env.REACT_APP_ENPOINT_URL + "/file", fd).then((res) => {
       currentWine.img = imgFile.name;
-      updateWine(currentWine);
+      updateWine(currentWine, true);
     });
   };
 
@@ -119,35 +119,41 @@ const Capture = (props) => {
     } else {
       return (
         <>
+          <label for="img" class="img-btn img-empty">
+            Ajouter photo
+          </label>
           <Input
             id="img"
             type="file"
-            label="Image"
+            label=""
             name="img"
+            cssstyle="img-style"
             handleChange={fileHandler}
           ></Input>
-
-          <button onClick={fileUploadHandler}>Enregistrer</button>
         </>
       );
     }
   };
 
-  const imageFileChange = () => {
+  const imageFileChange = (action) => {
     if (currentWine.img === undefined) {
       return <></>;
     } else {
+      let labelValue = "Ajouter photo";
+      if (action) labelValue = "Modifier photo";
       return (
         <>
+          <label for="img" class="img-btn">
+            {labelValue}
+          </label>
           <Input
             id="img"
             type="file"
-            label="Image"
+            label=""
             name="img"
+            cssstyle="img-style"
             handleChange={fileHandler}
           ></Input>
-
-          <button onClick={fileUploadHandler}>Enregistrer</button>
         </>
       );
     }
@@ -190,7 +196,10 @@ const Capture = (props) => {
         />
       </div>
       <div className={"lists-top-container"}>
-        <div className={"lists-column-container"}>{imageFile()}</div>
+        <div className={"lists-column-container"}>
+          {imageFile()}
+          {imageFileChange("mod")}
+        </div>
         <div className={"lists-column-container"}>
           <div className={"list-item-container"}>
             <Select
@@ -247,7 +256,6 @@ const Capture = (props) => {
           cssstyle="comment-area"
         ></Input>
       </div>
-      <div className={"list-item-container"}>{imageFileChange()}</div>
       <div className={"button-container"}>
         <Button
           id="deleteButton"
