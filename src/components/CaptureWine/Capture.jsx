@@ -110,13 +110,10 @@ const Capture = (props) => {
 
   const imageFile = () => {
     if (currentWine.img !== undefined) {
+      let theImage = process.env.REACT_APP_S_PATH + currentWine.img;
       return (
         <div className={"img-container"}>
-          <img
-            src="https://wineimg.s3.amazonaws.com/16796914552401517640542542864333.jpg"
-            className={"label"}
-            alt="label"
-          ></img>
+          <img src={theImage} className={"label"} alt="label"></img>
         </div>
       );
     } else {
@@ -137,18 +134,8 @@ const Capture = (props) => {
   };
 
   const imageFileChange = () => {
-    if (currentWine.img !== undefined) {
-      return (
-        <Input
-          id="img"
-          type="text"
-          message="Image"
-          label="Image"
-          name="img"
-          handleChange={handleChange}
-          defaultValue={currentWine.img}
-        ></Input>
-      );
+    if (currentWine.img === undefined) {
+      return <></>;
     } else {
       return (
         <>

@@ -27,7 +27,7 @@ const Select = (props) => {
       theURL = process.env.REACT_APP_ENPOINT_URL + "/millesime";
     else if (props.list === "country")
       theURL = process.env.REACT_APP_ENPOINT_URL + "/country";
-    console.log(theURL);
+    //console.log(theURL);
     return fetch(theURL)
       .then((response) => response.json())
       .then((data) => {
