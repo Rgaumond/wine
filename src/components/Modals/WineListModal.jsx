@@ -199,7 +199,8 @@ const WineDetail = (props) => {
             <div
               className={"wine-info-img"}
               style={{
-                backgroundImage: "url(" + currentWine.img + ")",
+                backgroundImage:
+                  "url(" + process.env.REACT_APP_S_PATH + currentWine.img + ")",
               }}
             >
               <div className={"wine-info"}>
