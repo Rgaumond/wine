@@ -1,7 +1,6 @@
 node_modules
 .env
-node_modules/.cache/.eslintcache
-node_modules/.cache/.eslintcache
-node_modules/.cache/.eslintcache
+node_modules/.cache/
+
 .gitignore
 node_modules
