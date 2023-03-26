@@ -136,7 +136,7 @@ const Cellar = () => {
       />
       <div class="section_container">
         <div>
-          Cellier contient:{cellarCellCount - cellarEmptyCellCount - 2} libre:
+          Cellier contient:{cellarCellCount - cellarEmptyCellCount} libre:
           {cellarEmptyCellCount - 1}
         </div>
         <div class="cellar_container">

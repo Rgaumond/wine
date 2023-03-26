@@ -33,7 +33,6 @@ const Navbar = () => {
           <div className={burger_class}></div>
           <div className={burger_class}></div>
           <div className={burger_class}></div>
-          <div className={burger_class}></div>
         </div>
       </nav>
       <div className={menu_class}>
