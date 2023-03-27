@@ -4,3 +4,6 @@ node_modules/.cache/
 
 .gitignore
 node_modules
+node_modules/.cache/default-development/index.pack.old
+node_modules/.package-lock.json
+package-lock.json

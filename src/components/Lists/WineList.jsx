@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Input from "../Form/Input";
 import Select from "../Form/Select";
-
+import { useParams } from "react-router-dom";
 //type WineObj = { id_: String, name: string }[];
 // const groups = [
 //   { id_: 0, name: "Rouge" },
@@ -18,13 +18,13 @@ const WineList = (props) => {
   const [wineGroup, setWineGroup] = React.useState("All");
   const [dataIsReturned, setDataReturned] = useState(false);
   const [group, setGroup] = useState("All");
+  const params = useParams();
 
   const handleInputChange = (event) => {
     setSearchValue(event.target.value);
   };
 
   const sortByMillesime = (wines) => {
-    //if (params.wineid)
     const filtered = wines.filter(inStock);
 
     filtered.sort((a, b) => (a.millesime > b.millesime ? 1 : -1));
@@ -32,7 +32,8 @@ const WineList = (props) => {
   };
 
   const inStock = (wines) => {
-    return wines.qty > 0;
+    if (!params.view || params.view !== "all") return wines.qty > 0;
+    else return wines;
   };
 
   const filteredWine = wines.filter((wine) => {

@@ -20,7 +20,7 @@ const Navbar = () => {
   };
 
   const home = () => {
-    window.location.href = "../";
+    window.location.href = "../inventaire";
   };
 
   return (
@@ -38,9 +38,9 @@ const Navbar = () => {
       <div className={menu_class}>
         <div
           className="menu-item"
-          onClick={() => (window.location.href = "../")}
+          onClick={() => (window.location.href = "../inventaire")}
         >
-          Liste
+          Inventaire
         </div>
         <div
           className="menu-item"
@@ -59,6 +59,12 @@ const Navbar = () => {
           onClick={() => (window.location.href = "../qr")}
         >
           Code QR
+        </div>
+        <div
+          className="menu-item"
+          onClick={() => (window.location.href = "../all")}
+        >
+          Liste
         </div>
       </div>
     </div>

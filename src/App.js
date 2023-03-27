@@ -20,6 +20,10 @@ function App() {
           <Route path="/capture/:wineid" element={<Capture />}></Route>
           <Route path="/qr" element={<Qr />}></Route>
           <Route
+            path="/:view"
+            element={<WineList updateView={updateView} />}
+          ></Route>
+          <Route
             path="/"
             element={<WineList updateView={updateView} />}
           ></Route>

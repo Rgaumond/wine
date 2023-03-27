@@ -158,6 +158,34 @@ const Capture = (props) => {
       );
     }
   };
+  const inventory = () => {
+    if (currentWine.qty > 0) {
+      return (
+        <Button
+          id="inventoryButton"
+          className={"wine-button"}
+          variant="success"
+          onClick={() => {
+            window.location.href = "../Cellar/" + currentWine._id;
+          }}
+        >
+          Inventaire {currentWine.qty}
+        </Button>
+      );
+    } else {
+      return (
+        <Input
+          id="qty"
+          label="Qtée"
+          type="number"
+          name="qty"
+          disabled="true"
+          defaultValue={currentWine.qty}
+        ></Input>
+      );
+    }
+  };
+
   //Called once after the render (component is mounted) - the array is the dependency array basically the parameters which trigger the function is they are changed
   useEffect(() => {
     fetchData();
@@ -221,17 +249,7 @@ const Capture = (props) => {
             />
           </div>
 
-          <div className={"list-item-container"}>
-            <Input
-              id="qty"
-              label="Qtée"
-              type="number"
-              name="qty"
-              disabled="true"
-              handleChange={handleChange}
-              defaultValue={currentWine.qty}
-            ></Input>
-          </div>
+          <div className={"list-item-container"}>{inventory()}</div>
           <div className={"list-item-container"}>
             <Input
               id="price"
