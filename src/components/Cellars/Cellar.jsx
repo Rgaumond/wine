@@ -238,7 +238,7 @@ const Cellar = () => {
         <div class="section_container">
           <div class="section_title">
             Cuisine contient:
-            {kitchenEmptyCellCount - kitchenCellCount} libre:{kitchenCellCount}
+            {kitchenCellCount - kitchenCellCount} libre:{kitchenEmptyCellCount}
           </div>
           <div class="kitchen_cellar_container">
             {locations.map((loc) => {
