@@ -41,7 +41,10 @@ const WineList = (props) => {
       if (wineGroup === "All") return wine;
       else if (wine.group === wineGroup) return wine;
     } else {
-      if (
+      if (wineGroup === "All") {
+        if (wine.name.toLowerCase().includes(searchValue.toLowerCase()))
+          return wine;
+      } else if (
         wine.name.toLowerCase().includes(searchValue.toLowerCase()) &&
         wine.group === wineGroup
       )
