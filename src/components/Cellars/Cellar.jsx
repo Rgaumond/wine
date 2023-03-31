@@ -51,6 +51,10 @@ const Cellar = () => {
       .then((response) => response.json())
       .then((data) => {
         setWineCount(data.locations);
+        data.locations.map((loc, i) => {
+          loc.position = parseInt(loc._id.substring(2));
+        });
+        data.locations.sort((a, b) => (a.position > b.position ? 1 : -1));
         setlocations(data.locations);
       });
   };
@@ -238,7 +242,8 @@ const Cellar = () => {
         <div class="section_container">
           <div class="section_title">
             Cuisine contient:
-            {kitchenCellCount-kitchenEmptyCellCount} libre:{kitchenEmptyCellCount}
+            {kitchenCellCount - kitchenEmptyCellCount} libre:
+            {kitchenEmptyCellCount}
           </div>
           <div class="kitchen_cellar_container">
             {locations.map((loc) => {
