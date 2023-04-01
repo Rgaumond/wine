@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import Input from "../Form/Input";
 import Select from "../Form/Select";
 import { useParams } from "react-router-dom";
+import { FaStar } from "react-icons/fa";
+import { FaRegStar } from "react-icons/fa";
 //type WineObj = { id_: String, name: string }[];
 // const groups = [
 //   { id_: 0, name: "Rouge" },
@@ -109,18 +111,43 @@ const WineList = (props) => {
         </div>
 
         {filteredWine.map((wine) => {
-          return (
-            <div
-              className={"list-item-container"}
-              onClick={() => {
-                editWine(wine._id);
-              }}
-            >
-              <div className={""}>
-                {wine.name} {wine.millesime} ({wine.qty})
+          if (wine.rating !== undefined)
+            return (
+              <div
+                className={"list-item-container"}
+                onClick={() => {
+                  editWine(wine._id);
+                }}
+              >
+                <div className={""} style={{ position: "relative" }}>
+                  {wine.name} {wine.millesime}&nbsp;qt:{wine.qty}&nbsp;&nbsp;
+                  <div
+                    style={{ position: "absolute", right: "10px", top: "1px" }}
+                  >
+                    {wine.rating}
+                    <FaRegStar
+                      style={{ color: "#ecc609", fontSize: "1.5em" }}
+                    />
+                  </div>
+                </div>
               </div>
-            </div>
-          );
+            );
+          else
+            return (
+              <div
+                className={"list-item-container"}
+                onClick={() => {
+                  editWine(wine._id);
+                }}
+              >
+                <div className={""} style={{ position: "relative" }}>
+                  {wine.name} {wine.millesime}&nbsp;qt:{wine.qty}&nbsp;&nbsp;
+                  <div
+                    style={{ position: "absolute", right: "10px", top: "1px" }}
+                  ></div>
+                </div>
+              </div>
+            );
         })}
       </>
     );

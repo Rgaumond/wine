@@ -16,6 +16,7 @@ const initialValues = {
   commentary: "",
   region: "",
   img: "",
+  rating: 0,
 };
 const Capture = (props) => {
   const [currentWine, setCurrentWine] = useState({});
@@ -239,6 +240,7 @@ const Capture = (props) => {
       </div>
       <div className={"lists-top-container"}>
         <div className={"lists-column-container"}>
+          {inventory()}
           {imageFile()}
           {imageFileChange("mod")}
         </div>
@@ -263,7 +265,6 @@ const Capture = (props) => {
             />
           </div>
 
-          <div className={"list-item-container"}>{inventory()}</div>
           <div className={"list-item-container"}>
             <Input
               id="price"
@@ -272,6 +273,16 @@ const Capture = (props) => {
               name="price"
               handleChange={handleChange}
               defaultValue={currentWine.price}
+            ></Input>
+          </div>
+          <div className={"list-item-container"}>
+            <Input
+              id="rating"
+              label="Notation"
+              type="number"
+              name="rating"
+              handleChange={handleChange}
+              defaultValue={currentWine.rating}
             ></Input>
           </div>
         </div>
