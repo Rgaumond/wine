@@ -38,6 +38,16 @@ const Capture = (props) => {
     });
   };
 
+  const cloneWine = () => {
+    return fetch(process.env.REACT_APP_ENPOINT_URL + "/wines/add", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(currentWine),
+    }).then(() => {
+      window.location.href = "./";
+    });
+  };
+
   const updateWine = (values, refreshPage) => {
     return fetch(process.env.REACT_APP_ENPOINT_URL + "/wines/update", {
       method: "POST",
@@ -70,11 +80,15 @@ const Capture = (props) => {
     e.preventDefault();
   };
 
-  const handleDelete = (e) => {
+  const handleSubmitRequest = (e) => {
     // console.log(values);
     if (params.wineid) updateWine(currentWine);
     else addWine(currentWine);
     e.preventDefault();
+  };
+
+  const handleDelete = (e) => {
+    // console.log(values);
   };
 
   const displayButtons = () => {
@@ -279,7 +293,7 @@ const Capture = (props) => {
           id="deleteButton"
           className={"wine-button"}
           variant="danger"
-          onClick={handleSubmit}
+          onClick={handleDelete}
         >
           Annuler
         </Button>
@@ -287,9 +301,17 @@ const Capture = (props) => {
           id="submitButton"
           className={"wine-button"}
           variant="success"
-          onClick={handleDelete}
+          onClick={handleSubmitRequest}
         >
           Enregistrer
+        </Button>
+        <Button
+          id="submitButton"
+          className={"wine-button"}
+          variant="success"
+          onClick={cloneWine}
+        >
+          Clone
         </Button>
       </div>
     </>

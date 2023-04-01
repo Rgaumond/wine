@@ -180,7 +180,15 @@
   display: flex;
   z-index: 1;
 }
-
+.circleBlue {
+  position: absolute;
+  background-color: rgb(12, 167, 214);
+  border-radius: 50%;
+  height: 35px;
+  width: 35px;
+  display: flex;
+  z-index: 1;
+}
 #footerContainer {
   position: fixed;
   bottom: 0;

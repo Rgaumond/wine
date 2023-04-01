@@ -122,10 +122,13 @@ const Cellar = () => {
     }
   };
 
-  const setOctagonColor = (color) => {
-    if (color === "Rouge") return <div class="circleRed"></div>;
-    else if (color === "Blanc") return <div class="circleWhite"></div>;
-    else return <div class="circleTransparent"></div>;
+  const setOctagonColor = (color, wineID) => {
+    if (wineID === params.wineid) return <div className="circleBlue"></div>;
+    else {
+      if (color === "Rouge") return <div class="circleRed"></div>;
+      else if (color === "Blanc") return <div class="circleWhite"></div>;
+      else return <div class="circleTransparent"></div>;
+    }
   };
 
   return (
@@ -257,7 +260,7 @@ const Cellar = () => {
                       handleClick(loc._id, loc.wineid, loc.winename);
                     }}
                   >
-                    <div>{setOctagonColor(loc.winegroup)}</div>
+                    <div>{setOctagonColor(loc.winegroup, loc.wineid)}</div>
                   </div>
                 );
               }
@@ -280,7 +283,7 @@ const Cellar = () => {
                       handleClick(loc._id, loc.wineid, loc.winename);
                     }}
                   >
-                    <div>{setOctagonColor(loc.winegroup)}</div>
+                    <div>{setOctagonColor(loc.winegroup, loc.wineid)}</div>
                   </div>
                 );
               }
