@@ -39,7 +39,9 @@ const Input = (props) => {
     e.target.name = props.name;
     props.handleChange(e);
   };
-
+  let handleFocus = (event) => {
+    event.target.select();
+  };
   useEffect(() => {
     if (props.value || props.value === 0) setInput(props.value);
     else setInput("");
@@ -70,6 +72,7 @@ const Input = (props) => {
           id={props.id}
           placeholder=""
           onChange={handleChange}
+          value={props.defaultValue || ""}
         />
       </>
     );

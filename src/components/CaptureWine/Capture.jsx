@@ -74,6 +74,9 @@ const Capture = (props) => {
     }
   };
 
+  // let handleFocus = (event) => {
+  //   event.target.select();
+  // };
   const handleSubmit = (e) => {
     // console.log(values);
     if (params.wineid) updateWine(currentWine);
@@ -174,7 +177,7 @@ const Capture = (props) => {
     }
   };
   const inventory = () => {
-    if (currentWine.qty > 0) {
+    if (currentWine.qty > 0 && currentWine._id !== undefined) {
       return (
         <Button
           id="inventoryButton"
@@ -194,7 +197,7 @@ const Capture = (props) => {
           label="Qtée"
           type="number"
           name="qty"
-          disabled="true"
+          handleChange={handleChange}
           defaultValue={currentWine.qty}
         ></Input>
       );
@@ -222,7 +225,7 @@ const Capture = (props) => {
       </div>
       <div className={"list-item-container"}>
         <Select
-          label="Raisin"
+          label="Raisin(s)/Région"
           name="grape"
           handleChange={handleChange}
           list="grapes"
